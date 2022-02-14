@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+body{
+  margin: 0;
+  font-family: 'Open Sans';
+  background: #383737;
+}
+.main-wrapper{
+  position:relative;
+  height: 100vh;
+}
+.dron{
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s linear;
+  left: 50%;
+  top: 50%;
+  &__body{
+    transition: all 0.3s linear;
+    width: 100%;
+    height: 100%;
+    background-color: #91b5ea;
+    animation: dron-fading 1s linear infinite alternate;
+    &-inertia-left{
+      transform: translateX(5px);
+    }
+    &-inertia-right{
+      transform: translateX(-5px);
+    }
+    &-inertia-top{
+      transform: translateY(5px);
+    }
+    &-inertia-bottom{
+      transform: translateY(-5px);
+    }
+  }
+  &__engine{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #686cfa;
+    transform: rotate(45deg);
+    &-left-top{
+      left: -20px;
+      top: -20px;
+    }
+    &-right-top{
+      right: -20px;
+      top: -20px;
+    }
+    &-left-bottom{
+      left: -20px;
+      bottom: -20px;
+    }
+    &-right-bottom{
+      right: -20px;
+      bottom: -20px;
+    }
+    &-blade-top{
+      position:absolute;
+      width: 10px;
+      height: 20px;
+      top: -22px;
+      left: 50%;
+      margin-left: -5px;
+      background: #fff;
+    }
+    &-blade-bottom{
+      position:absolute;
+      width: 10px;
+      height: 20px;
+      bottom: -22px;
+      left: 50%;
+      margin-left: -5px;
+      background: #fff;
+    }
+    &:before{
+      content: '';
+      position:absolute;
+      width: 20px;
+      height: 10px;
+      left: -22px;
+      top: 50%;
+      margin-top: -5px;
+      background: #fff;
+    }
+    &:after{
+      content: '';
+      position:absolute;
+      width: 20px;
+      height: 10px;
+      right: -22px;
+      top: 50%;
+      margin-top: -5px;
+      background: #fff;
+    }
+  }
+  &.start-engine{
+    & .dron__engine{
+      animation: engine-rotation .5s infinite linear;
+    }
+  }
+}
+.bottom-panel{
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transition: all 0.5s ease;
+  opacity: 1;
+  &.scroll-down{
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  &__btn{
+    display: inline-block;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 10px;
+    background: #686cfa;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    &:hover{
+      background: #4b4fe4;
+    }
+  }
+  &__info{
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+@keyframes engine-rotation {
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(315deg);
+  }
+}
+@keyframes dron-fading {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .5;
+  }
+}
